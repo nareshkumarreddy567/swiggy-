@@ -1,0 +1,97 @@
+{% extends 's_admin/common.html' %}
+
+{% block common %}
+
+    {% load static %}
+
+    {% if request.session.status %}
+
+           <table align="center" border="0">
+    <tr>
+        <th>
+            {% include 's_admin/menu.html' %}
+        </th>
+    </tr>
+          <table align="center" border="0">
+                <tr>
+                    <th colspan="8" style="text-align: center;font-family: chiller;font-size: 30px;color: chartreuse">
+                        Pending Restaurants Information
+                    </th>
+                </tr>
+                <tr bgcolor="yellow">
+                    <th style="text-align: center" width="50" height="50">No</th>
+                    <th style="text-align: center" width="100">Name</th>
+                    <th style="text-align: center" width="100">Contact</th>
+                    <th style="text-align: center" width="50">Email</th>
+                    <th style="text-align: center" width="50">Area</th>
+                    <th style="text-align: center" width="100" >Type</th>
+                    <th style="text-align: center" width="200">Approve</th>
+                    <th style="text-align: center" width="50">Cancel</th>
+                    <
+                </tr>
+
+                {% for x in data %}
+                    <tr>
+                    <th style="text-align: center" width="50">{{ x.restro_id }}</th>
+                    <th style="text-align: center" width="200">{{ x.restro_name }}</th>
+                    <th style="text-align: center" width="200">{{ x.restro_contact }}</th>
+                    <th style="text-align: center" width="50">{{ x.restro_email }}</th>
+                    <th style="text-align: center" width="200">{{ x.restro_area }},<br>
+                                                {{ x.restro_area.city.city_name }},<br>
+                                                {{ x.restro_area.city.state.state_name }}
+                    </th>
+                    <th style="text-align: center" width="200">{{ x.restro_type }}</th>
+
+                    <th style="text-align: center">
+                        <a href="{% url 'approve_res' %}?rno={{ x.restro_id }}">
+                            <img src="{% static 'images/approve.jpg' %}" height="50" width="50">
+                        </a>
+                    </th>
+                        <th style="text-align: center">
+                        <a href="{% url 'cancel_res' %}?rno={{ x.restro_id }}">
+                            <img src="{% static 'images/close.png' %}" height="50" width="50">
+                        </a>
+                    </th>
+                    <th>
+
+                    </th>
+                    </tr>
+              {% endfor %}
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                {% else %}
+
+        <h3 style="text-align: center;font-family: 'Agency FB';font-size: 25px;color: red">
+            Please Do Login
+        </h3>
+                    </table>
+
+
+    {% endif %}
+
+
+
+
+
+{% endblock %}
